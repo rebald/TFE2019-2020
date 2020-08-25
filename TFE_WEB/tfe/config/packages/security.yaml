@@ -54,5 +54,5 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/api/tfe, roles: ROLE_USER }
+        - { path: ^/api/tfe/docs, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/temperature, roles: ROLE_USER }
