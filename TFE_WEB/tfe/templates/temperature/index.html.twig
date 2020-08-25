@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TemperatureController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/Users/Nathan/Documents/TFE/TFE/tfe/src/Controller/TemperatureController.php'|file_link(0) }}">src/Controller/TemperatureController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/Users/Nathan/Documents/TFE/TFE/tfe/templates/temperature/index.html.twig'|file_link(0) }}">templates/temperature/index.html.twig</a></code></li>
+    </ul>
+    Test ->
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Password</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for temp in temps %}
+            <tr>
+                <td>{{ temp.celsius }}</td>
+                <td>{{ temp.createdAt }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
