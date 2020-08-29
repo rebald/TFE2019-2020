@@ -20,7 +20,6 @@ define do_setup
 	docker-compose up -d
 	docker exec -w /var/www -it api sh -c 'composer install --prefer-dist --no-progress --no-suggest --optimize-autoloader'
 	$(call do_db_healthcheck)
-	docker exec -w /var/www -it api sh -c 'php bin/console make:migration'
 	docker exec -w /var/www -it api sh -c 'php bin/console d:d:d --if-exists --force'
 	docker exec -w /var/www -it api sh -c 'php bin/console d:d:c --if-not-exists'
 	docker exec -w /var/www -it api sh -c 'php bin/console d:m:m --no-interaction'
