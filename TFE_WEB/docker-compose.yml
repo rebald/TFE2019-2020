@@ -18,7 +18,7 @@ services:
             - '.docker/nginx/config/:/etc/nginx/sites-enabled/'
             - '.docker/nginx/config/:/etc/nginx/sites-available/'
             - '.docker/nginx/config/:/etc/nginx/conf.d/'
-            - './www:/var/www'
+            - './tfe:/var/www'
         ports:
             - ${NGINX_PORT_HTTP}:80
         restart: unless-stopped
