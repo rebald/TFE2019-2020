@@ -25,7 +25,15 @@ class AppFixtures extends Fixture
         $user->setPassword($password);
         $user->setRoles(['ROLE_ADMIN', 'ROLE_USER']);
 
+        $user2 = new User();
+
+        $user2->setEmail('nathan2@gmail.com');
+        $password = $this->encoder->encodePassword($user2, 'nathan');
+        $user2->setPassword($password);
+        $user2->setRoles(['ROLE_USER']);
+
         $manager->persist($user);
+        $manager->persist($user2);
         $manager->flush();
     }
 }

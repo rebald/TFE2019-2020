@@ -3,8 +3,8 @@ include .env
 setup :
 	$(call do_setup)
 
-start-web :
-	docker-compose up -d
+start :
+	$(call do_start)
 
 ssh :
 	docker exec -w /var/www -it api sh
@@ -29,6 +29,15 @@ define do_setup
 	docker exec -w /var/www -it api sh -c 'openssl pkey -in config/jwt/private.pem -out config/jwt/public.pem -pubout'
 	echo "\n"
 	echo "${APP} setup complete"
+endef
+
+define do_start
+	docker-compose up -d
+	$(call do_db_healthcheck)
+	docker exec -w /var/www -it api sh -c 'php bin/console d:d:d --if-exists --force'
+	docker exec -w /var/www -it api sh -c 'php bin/console d:d:c --if-not-exists'
+	docker exec -w /var/www -it api sh -c 'php bin/console d:m:m --no-interaction'
+	docker exec -w /var/www -it api sh -c 'php bin/console d:f:l -q'
 endef
 
 define do_db_healthcheck
