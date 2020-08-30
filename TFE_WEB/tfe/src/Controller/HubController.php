@@ -12,8 +12,6 @@ class HubController extends AbstractController
      */
     public function index()
     {
-        return $this->redirectToRoute('app_login');
-
         return $this->render('hub/index.html.twig', [
             'controller_name' => 'HubController',
         ]);
