@@ -1,6 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html' %}
 
-{% block title %}Hello TemperatureController!{% endblock %}
+{% block title %}TFE | Temperature{% endblock %}
 
 {% block body %}
 <style>
@@ -9,19 +9,11 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/Nathan/Documents/TFE/TFE/tfe/src/Controller/TemperatureController.php'|file_link(0) }}">src/Controller/TemperatureController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/Nathan/Documents/TFE/TFE/tfe/templates/temperature/index.html.twig'|file_link(0) }}">templates/temperature/index.html.twig</a></code></li>
-    </ul>
-    Test ->
     <table class="table">
         <thead class="thead-dark">
         <tr>
-            <th scope="col">Username</th>
-            <th scope="col">Password</th>
+            <th scope="col">Celsius</th>
+            <th scope="col">Date</th>
         </tr>
         </thead>
         <tbody>
