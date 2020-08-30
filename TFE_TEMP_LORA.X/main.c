@@ -107,8 +107,9 @@ void main(void)
         if(temperature =! a && connected){
             
             a= temperature;
-            
-            LORAWAN_Send(UNCNF, 2, temperature, 4);
+            if(connected){
+                LORAWAN_Send(UNCNF, 2, temperature, 2);
+            }
         }
     }
 }
