@@ -1,63 +1,142 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}TFE | Home{% endblock %}
+{% block title %}TFE | Home
+{% endblock %}
+
+{% block stylesheets %}
+	<link href="{{ asset('/build/unveil-effects/animations.css') }}" rel="stylesheet">
+	<link href="{{ asset('/build/css/hub.css') }}" rel="stylesheet">
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<!--  ********** HEADER SECTION ********** -->
+	<div id="h" style="background: url({{ asset('/build/img/background.jpg') }}) no-repeat center top;">
+		<div class="container">
+			<div class="centered">
+				<h1>Communication LoRaWAN sur microcontrôleur PIC</h1>
+				<br><br>
+				<a class="btn btn-transparent" href="{{ path('app_login') }}" style="color: white; border: 1px solid white; font-size: 25px;">Login</a>
+				<a class="btn btn-transparent" href="{{ path('temperature') }}" style="color: white; border: 1px solid white; font-size: 25px;">Température</a>
+			</div>
+			<!--/row -->
+		</div>
+		<!-- /container -->
+	</div>
+	<!--/header-->
 
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="{{ path('hub') }}">
-        Home   
-    </a>
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="navbar-brand" href="{{ path('temperature') }}">
-                Temperature
-            </a>
-        </li>
-    </ul>
-</nav>
-<div class="example-wrapper">
-    <div class="container header clearfix">
-        <h3 class="text-muted">Communication LoRaWAN sur microcontrôleur PIC </h3>
-    </div>
+	<!--  ********** WHITE SECTION ********** -->
+	<div id="w">
+		<div class="container">
+			<div class="centered">
+				<h4>INFORMATIONS</h4>
+				<br/>
+				<svg width="1em" height="1em" viewbox="0 0 16 16" class="bi bi-chevron-compact-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
+				</svg>
+				<!--col-md-8 -->
+			</div>
+			<!--/row -->
+		</div>
+		<!--/container -->
+	</div>
+	<!--/w -->
 
-    <div class="jumbotron" style="background-image: url('/var/www/templates/hub/background.jpg');">
-      <h1 class="display-3 text-center">TFE</h1>
-      <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-    </div>
+	<!--  ********** GREEN SECTION ********** -->
+	<div id="g">
+		<div class="container">
+			<div class="row mt">
+				<div class="col-md-6 centered">
+                    <img src="{{ asset('/build/img/logoProteus.png') }}" class="img-responsive aligncenter" width="320" alt="" data-effect="slide-left">
+				</div>
+				<!--/col-md-6 -->
 
-    <div class="row marketing">
-      <div class="col-lg-6">
-        <h4>Subheading</h4>
-        <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+				<div class="col-md-4">
+					<h1 data-effect="slide-right">Electronique</h1>
+					<p>
+						La confection du PCB a été simulée avec le logiciel Proteus. 
+						<br>
+						Voici les composants utilisés sur la carte :
+					</p>
+                    <ul class="list">
+						<li class="list-item">pic18f45k50</li>
+						<li class="list-item">LM35</li>
+						<li class="list-item">HC-SR04</li>
+						<li class="list-item">Module Lora</li>
+					</ul>
+				</div>
+				<!--/col-md-4 -->
 
-        <h4>Subheading</h4>
-        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+			</div>
+			<!--/row -->
+		</div>
+		<!--/container -->
+	</div>
+	<!--/G -->
 
-        <h4>Subheading</h4>
-        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+	<!--  ********** RED SECTION ********** -->
+	<div id="r">
+		<div class="container">
+			<div class="row mt">
+				<div class="col-md-4 col-md-offset-2">
+					<h1 data-effect="slide-left">Application Web</h1>
+					<p>
+						La technologie utilisée pour la partie web de ce projet est le framework Symfony, un ensemble de composants PHP. 
+						<br><br>
+						Il nous offre une API complète avec un système de sécurité simple à implémenter.
+					</p>
+				</div>
+				<!--/col-md-4 -->
+				<div class="col-md-6 centered">
+					<img src="{{ asset('/build/img/logoSymfony.png') }}" class="img-responsive aligncenter" width="320" alt="" data-effect="slide-right">
+				</div>
+				<!--/col-md-6 -->
+			</div>
+			<!--/row -->
+		</div>
+		<!--/container -->
+	</div>
+	<!--/R -->
+
+	<!--  ********** BLUE SECTION ********** -->
+	<div id="b">
+		<div class="container">
+			<div class="row mt">
+				<div class="col-md-6 centered">
+					<img src="{{ asset('/build/img/logoOVH.png') }}" class="img-responsive aligncenter" width="320" alt="" data-effect="slide-left">
+				</div>
+				<!--/col-md-6 -->
+
+				<div class="col-md-4">
+					<h1 data-effect="slide-right">Serveur</h1>
+					<p>
+						Pour héberger notre application web, nous utilisons un VPS fournit par l'hébergeur OVH.
+						<br>
+						Le nom de domaine à également été pris chez eux. 
+					</p>
+				</div>
+				<!--/col-md-4 -->
+
+			</div>
+			<!--/row -->
+		</div>
+		<!--/container -->
+	</div>
+	<!--/B -->
+
+	<div id="copyrights">
+    <div class="container">
+      <p>
+        Renaud ALLARD & Nathan HENRY
+      </p>
+      <div class="credits">
+        Créé pour notre TFE. <a href="https://www.ephec.be/">Ephec</a>
       </div>
-
-      <div class="col-lg-6">
-        <h4>Subheading</h4>
-        <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-        <h4>Subheading</h4>
-        <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-        <h4>Subheading</h4>
-        <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-      </div>
     </div>
+  </div>
+  <!-- / copyrights -->
+{% endblock %}
 
-    <footer class="footer">
-      <p>© Company 2017</p>
-    </footer>
-
-  </div> <!-- /container -->
+{% block javascripts %}
+	<script src="{{ asset('/build/unveil-effects/unveil-effects.js') }}"></script>
+	<script src="{{ asset('/build/js/hub.js') }}"></script>
 {% endblock %}
