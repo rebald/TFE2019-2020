@@ -45,7 +45,7 @@
                             Période
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item active" href="{{ path('temperature', {sort: 'week'}) }}">Cette semaine</a>
+                            <a class="dropdown-item" href="{{ path('temperature', {sort: 'week'}) }}">Cette semaine</a>
                             <a class="dropdown-item" href="{{ path('temperature', {sort: 'month'}) }}">Ce mois</a>
                             <a class="dropdown-item" href="{{ path('temperature', {sort: 'year'}) }}">Cette année</a>
                             <a class="dropdown-item" href="{{ path('temperature', {sort: 'all'}) }}">Tout</a>
@@ -119,17 +119,6 @@
                 display: false,
             }
             }
-        });
-
-        $(function(){
-
-            $(".dropdown-menu li a").click(function(){
-
-                $(".btn:first-child").text($(this).text());
-                $(".btn:first-child").val($(this).text());
-
-            });
-
         });
     </script>
 {% endblock %}
