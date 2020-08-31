@@ -42,7 +42,7 @@
                     <div class="dropdown">
                         <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span data-feather="calendar"></span>
-                            Période
+                            <span id="toChange">Période</span>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" onclick="fill('week')">Cette semaine</a>
@@ -97,15 +97,19 @@
             var date = new Date();
             if (select == "week") {
                 date.setDate(date.getDate()-7);
+                document.getElementById("toChange").innerText = "Semaine";
             }
             else if (select == "month") {
                 date.setMonth(date.getMonth()-1);
+                document.getElementById("toChange").innerText = "Mois";
             }
             else if (select == "year") {
                 date.setFullYear(date.getFullYear()-1);
+                document.getElementById("toChange").innerText = "Année";
             }
             else {
                 date.setFullYear(0);
+                document.getElementById("toChange").innerText = "Tout";
             }
             {% for temp in tempString %}
                 if (new Date('{{ temp.createdAt }}') > date) {
