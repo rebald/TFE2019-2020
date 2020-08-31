@@ -96,7 +96,7 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('temperature'));
+        return new RedirectResponse($this->urlGenerator->generate('temperature', ["sort" => "all"]));
     }
 
     protected function getLoginUrl()
