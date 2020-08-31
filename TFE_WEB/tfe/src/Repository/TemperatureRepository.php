@@ -36,15 +36,23 @@ class TemperatureRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Temperature
+    /**
+     * Custom querry for temperatures
+     *
+     * @param [DateTime] $date
+     * @return Temperature[]
+     */
+    public function findUntil($date)
     {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $entityManager = $this->getEntityManager();
+
+        $query = $entityManager->createQuery(
+            'SELECT p
+            FROM App\Entity\Temperature p
+            WHERE p.createdAt > :date
+            ORDER BY p.createdAt ASC'
+        )->setParameter('date', $date);
+
+        return $query->getResult();
     }
-    */
 }

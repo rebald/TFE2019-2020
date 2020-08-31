@@ -24,7 +24,7 @@
 		</a>
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="navbar-brand" href="{{ path('temperature') }}">
+				<a class="navbar-brand" href="{{ path('temperature', {sort: 'all'}) }}">
 					Temperature
 				</a>
 			</li>
@@ -39,14 +39,18 @@
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h2">Chart</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group mr-2">
-                        <button class="btn btn-sm btn-outline-secondary">Share</button>
-                        <button class="btn btn-sm btn-outline-secondary">Export</button>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span data-feather="calendar"></span>
+                            Période
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item active" href="{{ path('temperature', {sort: 'week'}) }}">Cette semaine</a>
+                            <a class="dropdown-item" href="{{ path('temperature', {sort: 'month'}) }}">Ce mois</a>
+                            <a class="dropdown-item" href="{{ path('temperature', {sort: 'year'}) }}">Cette année</a>
+                            <a class="dropdown-item" href="{{ path('temperature', {sort: 'all'}) }}">Tout</a>
+                        </div>
                     </div>
-                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                        <span data-feather="calendar"></span>
-                        This week
-                    </button>
                 </div>
             </div>
 
@@ -73,6 +77,12 @@
             </div>
         </div>
 	</main>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
 
     <!-- Graphs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
@@ -109,6 +119,17 @@
                 display: false,
             }
             }
+        });
+
+        $(function(){
+
+            $(".dropdown-menu li a").click(function(){
+
+                $(".btn:first-child").text($(this).text());
+                $(".btn:first-child").val($(this).text());
+
+            });
+
         });
     </script>
 {% endblock %}
