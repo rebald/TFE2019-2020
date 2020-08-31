@@ -35,7 +35,7 @@
 	</nav>
 
 	<main role="main">
-        <div class="example-wrapper">
+        <div class="example-wrapper" id="reload">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                 <h1 class="h2">Chart</h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
@@ -45,16 +45,17 @@
                             Période
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{ path('temperature', {sort: 'week'}) }}">Cette semaine</a>
-                            <a class="dropdown-item" href="{{ path('temperature', {sort: 'month'}) }}">Ce mois</a>
-                            <a class="dropdown-item" href="{{ path('temperature', {sort: 'year'}) }}">Cette année</a>
-                            <a class="dropdown-item" href="{{ path('temperature', {sort: 'all'}) }}">Tout</a>
+                            <a class="dropdown-item" onclick="fill('week')">Cette semaine</a>
+                            <a class="dropdown-item" onclick="fill('month')">Ce mois</a>
+                            <a class="dropdown-item" onclick="fill('year')">Cette année</a>
+                            <a class="dropdown-item" onclick="fill('all')">Tout</a>
                         </div>
                     </div>
                 </div>
             </div>
 
             <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
+            <div id="helper"></div>
 
             <h2>Tableau</h2>
             <div class="table-responsive">
@@ -87,38 +88,62 @@
     <!-- Graphs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
-        var arrayDate = [];
-        var arrayTemp = [];
-        {% for temp in tempString %}
-            arrayDate.push('{{ temp.createdAt }}');
-            arrayTemp.push('{{ temp.celsius }}');
-        {% endfor %}
-        var ctx = document.getElementById("myChart");
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-            labels: arrayDate,
-            datasets: [{
-                data: arrayTemp,
-                lineTension: 0,
-                backgroundColor: 'transparent',
-                borderColor: '#007bff',
-                borderWidth: 4,
-                pointBackgroundColor: '#007bff'
-            }]
-            },
-            options: {
-            scales: {
-                yAxes: [{
-                ticks: {
-                    beginAtZero: false
+
+        fill('all');
+
+        function fill(select) {
+            var arrayDate = [];
+            var arrayTemp = [];
+            var date = new Date();
+            if (select == "week") {
+                date.setDate(date.getDate()-7);
+            }
+            else if (select == "month") {
+                date.setMonth(date.getMonth()-1);
+            }
+            else if (select == "year") {
+                date.setFullYear(date.getFullYear()-1);
+            }
+            else {
+                date.setFullYear(0);
+            }
+            {% for temp in tempString %}
+                if (new Date('{{ temp.createdAt }}') > date) {
+                    arrayDate.push('{{ temp.createdAt }}');
+                    arrayTemp.push('{{ temp.celsius }}');
                 }
+            {% endfor %}
+            genChart(arrayDate, arrayTemp);
+        }
+
+        function genChart(arrayDate, arrayTemp) {
+            var ctx = document.getElementById("myChart");
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                labels: arrayDate,
+                datasets: [{
+                    data: arrayTemp,
+                    lineTension: 0,
+                    backgroundColor: 'transparent',
+                    borderColor: '#007bff',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#007bff'
                 }]
-            },
-            legend: {
-                display: false,
-            }
-            }
-        });
+                },
+                options: {
+                scales: {
+                    yAxes: [{
+                    ticks: {
+                        beginAtZero: false
+                    }
+                    }]
+                },
+                legend: {
+                    display: false,
+                }
+                }
+            });
+        }
     </script>
 {% endblock %}

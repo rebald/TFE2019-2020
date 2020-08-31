@@ -42,16 +42,15 @@ class TemperatureRepository extends ServiceEntityRepository
      * @param [DateTime] $date
      * @return Temperature[]
      */
-    public function findUntil($date)
+    public function findAllSorted()
     {
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
             'SELECT p
             FROM App\Entity\Temperature p
-            WHERE p.createdAt > :date
             ORDER BY p.createdAt ASC'
-        )->setParameter('date', $date);
+        );
 
         return $query->getResult();
     }
