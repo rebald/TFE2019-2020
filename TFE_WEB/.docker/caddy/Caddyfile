@@ -1,3 +1,9 @@
-nathanserver.be
+nathanserver.be {
 
-reverse_proxy api:9000
+    reverse_proxy api:9000 {
+        flush_interval 5
+    }
+    tls {
+        protocols tls1.2
+    }
+}
