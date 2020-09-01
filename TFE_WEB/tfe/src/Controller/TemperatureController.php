@@ -12,9 +12,9 @@ use Symfony\Component\Validator\Constraints\Date;
 class TemperatureController extends AbstractController
 {
     /**
-     * @Route("/temperature/{sort}", name="temperature")
+     * @Route("/temperature", name="temperature")
      */
-    public function index(string $sort)
+    public function index()
     {
         $temps = $this->getDoctrine()
             ->getRepository(Temperature::class)

@@ -1,27 +1,27 @@
 version: '3.7'
 
 services:
-    # caddy:
-    #     image: caddy:2.0.0-alpine
-    #     container_name: caddy
-    #     volumes:
-    #         - '.docker/caddy/:/data'
-    #         - '.docker/caddy/Caddyfile:/etc/caddy/Caddyfile'
-    #     ports:
-    #         - '80:80'
-    #         - '443:443'
-
-    nginx:
-        build: .docker/nginx/
-        container_name: nginx
+    caddy:
+        image: caddy:latest
+        container_name: caddy
         volumes:
-            - '.docker/nginx/config/:/etc/nginx/sites-enabled/'
-            - '.docker/nginx/config/:/etc/nginx/sites-available/'
-            - '.docker/nginx/config/:/etc/nginx/conf.d/'
-            - './tfe:/var/www'
+            - '.docker/caddy/:/data'
+            - '.docker/caddy/Caddyfile:/etc/caddy/Caddyfile'
         ports:
-            - ${NGINX_PORT_HTTP}:80
-        restart: unless-stopped
+            - '80:80'
+            - '443:443'
+
+    # nginx:
+    #     build: .docker/nginx/
+    #     container_name: nginx
+    #     volumes:
+    #         - '.docker/nginx/config/:/etc/nginx/sites-enabled/'
+    #         - '.docker/nginx/config/:/etc/nginx/sites-available/'
+    #         - '.docker/nginx/config/:/etc/nginx/conf.d/'
+    #         - './tfe:/var/www'
+    #     ports:
+    #         - ${NGINX_PORT_HTTP}:80
+    #     restart: unless-stopped
 
     database:
         image: mariadb:10.5.1
