@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PostTemperatureController extends AbstractController
 {
     /**
-     * @Route("/post/temperature", name="post_temperature")
+     * @Route("/api/tfe/temperature", name="post_temperature")
      */
     public function index(Request $request, EntityManagerInterface $manager)
     {
