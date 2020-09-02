@@ -58,14 +58,14 @@ void SYSTEM_Initialize(void)
 
 void OSCILLATOR_Initialize(void)
 {
-    // SCS FOSC; IDLEN disabled; IRCF 2MHz; 
-    OSCCON = 0x40;
+    // SCS FOSC; IDLEN disabled; IRCF 8MHz; 
+    OSCCON = 0x60;
     // INTSRC INTRC_31_25KHz; PLLEN disabled; PRISD disabled; SOSCGO disabled; 
     OSCCON2 = 0x00;
     // SPLLMULT 4xPLL; TUN 0; 
     OSCTUNE = 0x00;
-    // ACTSRC SOSC; ACTUD enabled; ACTEN disabled; 
-    ACTCON = 0x00;
+    // ACTSRC SOSC; ACTUD enabled; ACTEN enabled; 
+    ACTCON = 0x80;
 }
 
 

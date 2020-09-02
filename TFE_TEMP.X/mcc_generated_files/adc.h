@@ -94,7 +94,6 @@ typedef struct
 
 typedef enum
 {
-    LM35 =  0x0,
     channel_Temp =  0x1C,
     channel_CTMU =  0x1D,
     channel_DAC =  0x1E,

@@ -65,20 +65,6 @@
 #define PULL_UP_ENABLED      1
 #define PULL_UP_DISABLED     0
 
-// get/set LM35 aliases
-#define LM35_TRIS                 TRISAbits.TRISA0
-#define LM35_LAT                  LATAbits.LATA0
-#define LM35_PORT                 PORTAbits.RA0
-#define LM35_ANS                  ANSELAbits.ANSA0
-#define LM35_SetHigh()            do { LATAbits.LATA0 = 1; } while(0)
-#define LM35_SetLow()             do { LATAbits.LATA0 = 0; } while(0)
-#define LM35_Toggle()             do { LATAbits.LATA0 = ~LATAbits.LATA0; } while(0)
-#define LM35_GetValue()           PORTAbits.RA0
-#define LM35_SetDigitalInput()    do { TRISAbits.TRISA0 = 1; } while(0)
-#define LM35_SetDigitalOutput()   do { TRISAbits.TRISA0 = 0; } while(0)
-#define LM35_SetAnalogMode()      do { ANSELAbits.ANSA0 = 1; } while(0)
-#define LM35_SetDigitalMode()     do { ANSELAbits.ANSA0 = 0; } while(0)
-
 /**
    @Param
     none
