@@ -1,5 +1,5 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F4865 `(v ~T0 @X0 0 tf ]
+[v F4864 `(v ~T0 @X0 0 tf ]
 "9707 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f45k50.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f45k50.h: 9707: extern volatile unsigned char ADCON1 __attribute__((address(0xFC1)));
 [v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
@@ -17,8 +17,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _ADCON0 `Vuc ~T0 @X0 0 e@4034 ]
 "83 mcc_generated_files/adc.c
 [; ;mcc_generated_files/adc.c: 83: void ADC_SelectChannel(adc_channel_t channel)
-[c E4848 0 28 29 30 31 .. ]
-[n E4848 . LM35 channel_Temp channel_CTMU channel_DAC channel_FVRBuf2  ]
+[c E4848 28 29 30 31 .. ]
+[n E4848 . channel_Temp channel_CTMU channel_DAC channel_FVRBuf2  ]
 "9781 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f45k50.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f45k50.h: 9781:     struct {
 [s S435 :1 `uc 1 :1 `uc 1 ]
@@ -688,7 +688,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSU equ 0FFFh ;# ">
 "60 mcc_generated_files/adc.c
 [; ;mcc_generated_files/adc.c: 60: void (*ADC_InterruptHandler)(void);
-[v _ADC_InterruptHandler `*F4865 ~T0 @X0 1 e ]
+[v _ADC_InterruptHandler `*F4864 ~T0 @X0 1 e ]
 "62
 [; ;mcc_generated_files/adc.c: 62: void ADC_Initialize(void)
 [v _ADC_Initialize `(v ~T0 @X0 1 ef ]
@@ -843,8 +843,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _ADC_TemperatureAcquisitionDelay ]
 [f ]
 "133
-[; ;mcc_generated_files/adc.c: 133:     _delay((unsigned long)((200)*(2000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 2000000 `l `d .4000000.0 `ul ]
+[; ;mcc_generated_files/adc.c: 133:     _delay((unsigned long)((200)*(8000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
 "134
 [; ;mcc_generated_files/adc.c: 134: }
 [e :UE 646 ]

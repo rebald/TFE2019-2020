@@ -8007,9 +8007,9 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 50 "mcc_generated_files/mcc.h" 2
 
 # 1 "mcc_generated_files/pin_manager.h" 1
-# 92 "mcc_generated_files/pin_manager.h"
+# 78 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 104 "mcc_generated_files/pin_manager.h"
+# 90 "mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "mcc_generated_files/mcc.h" 2
 
@@ -8154,25 +8154,24 @@ typedef struct
 # 95 "mcc_generated_files/adc.h"
 typedef enum
 {
-    LM35 = 0x0,
     channel_Temp = 0x1C,
     channel_CTMU = 0x1D,
     channel_DAC = 0x1E,
     channel_FVRBuf2 = 0x1F
 } adc_channel_t;
-# 137 "mcc_generated_files/adc.h"
+# 136 "mcc_generated_files/adc.h"
 void ADC_Initialize(void);
-# 167 "mcc_generated_files/adc.h"
+# 166 "mcc_generated_files/adc.h"
 void ADC_SelectChannel(adc_channel_t channel);
-# 194 "mcc_generated_files/adc.h"
+# 193 "mcc_generated_files/adc.h"
 void ADC_StartConversion(void);
-# 226 "mcc_generated_files/adc.h"
+# 225 "mcc_generated_files/adc.h"
 _Bool ADC_IsConversionDone(void);
-# 259 "mcc_generated_files/adc.h"
+# 258 "mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversionResult(void);
-# 289 "mcc_generated_files/adc.h"
+# 288 "mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversion(adc_channel_t channel);
-# 317 "mcc_generated_files/adc.h"
+# 316 "mcc_generated_files/adc.h"
 void ADC_TemperatureAcquisitionDelay(void);
 # 56 "mcc_generated_files/mcc.h" 2
 # 71 "mcc_generated_files/mcc.h"
@@ -8195,11 +8194,11 @@ void SYSTEM_Initialize(void)
 void OSCILLATOR_Initialize(void)
 {
 
-    OSCCON = 0x40;
+    OSCCON = 0x60;
 
     OSCCON2 = 0x00;
 
     OSCTUNE = 0x00;
 
-    ACTCON = 0x00;
+    ACTCON = 0x80;
 }

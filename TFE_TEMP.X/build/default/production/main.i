@@ -8007,9 +8007,9 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 50 "./mcc_generated_files/mcc.h" 2
 
 # 1 "./mcc_generated_files/pin_manager.h" 1
-# 92 "./mcc_generated_files/pin_manager.h"
+# 78 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_Initialize (void);
-# 104 "./mcc_generated_files/pin_manager.h"
+# 90 "./mcc_generated_files/pin_manager.h"
 void PIN_MANAGER_IOC(void);
 # 51 "./mcc_generated_files/mcc.h" 2
 
@@ -8154,25 +8154,24 @@ typedef struct
 # 95 "./mcc_generated_files/adc.h"
 typedef enum
 {
-    LM35 = 0x0,
     channel_Temp = 0x1C,
     channel_CTMU = 0x1D,
     channel_DAC = 0x1E,
     channel_FVRBuf2 = 0x1F
 } adc_channel_t;
-# 137 "./mcc_generated_files/adc.h"
+# 136 "./mcc_generated_files/adc.h"
 void ADC_Initialize(void);
-# 167 "./mcc_generated_files/adc.h"
+# 166 "./mcc_generated_files/adc.h"
 void ADC_SelectChannel(adc_channel_t channel);
-# 194 "./mcc_generated_files/adc.h"
+# 193 "./mcc_generated_files/adc.h"
 void ADC_StartConversion(void);
-# 226 "./mcc_generated_files/adc.h"
+# 225 "./mcc_generated_files/adc.h"
 _Bool ADC_IsConversionDone(void);
-# 259 "./mcc_generated_files/adc.h"
+# 258 "./mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversionResult(void);
-# 289 "./mcc_generated_files/adc.h"
+# 288 "./mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversion(adc_channel_t channel);
-# 317 "./mcc_generated_files/adc.h"
+# 316 "./mcc_generated_files/adc.h"
 void ADC_TemperatureAcquisitionDelay(void);
 # 56 "./mcc_generated_files/mcc.h" 2
 # 71 "./mcc_generated_files/mcc.h"
@@ -8326,11 +8325,50 @@ char *tempnam(const char *, const char *);
 
 
 
+
+
+
 int valLM35;
 float temperature;
 float limite = 25;
+int flag =0;
+uint16_t distance;
 
 
+
+
+
+__bit wait_sensor()
+{
+  uint16_t i = 0;
+  TMR1H = TMR1L = 0;
+  TMR1ON = 1;
+  while(!LATBbits.LATB0 && (i < 1000))
+    i = ( TMR1H << 8 ) | TMR1L;
+
+  if(i >= 1000)
+    return 0;
+
+  else
+    return 1;
+}
+
+__bit get_distance(uint16_t *ticks)
+{
+  *ticks = 0;
+  TMR1H = TMR1L = 0;
+
+  while( LATBbits.LATB0 && (*ticks < 23200) )
+    *ticks = ( TMR1H << 8 ) | TMR1L;
+
+  TMR1ON = 0;
+
+  if (*ticks >= 23200)
+    return 1;
+
+  else
+    return 0;
+}
 
 void main(void)
 {
@@ -8340,20 +8378,61 @@ void main(void)
     OSCCON = 0x70;
     OSCTUNE = 0x40;
 
+    PORTB = 0;
+    TRISB1 = 0;
+
+    T1CON = 0x10;
+    TMR1H = TMR1L = 0;
+
     TRISDbits.TRISD0 = 0;
 
-    TRISAbits.TRISA0 = 1;
+    TRISBbits.TRISB0 = 0;
+    TRISBbits.TRISB1 = 1;
 
+    TRISAbits.TRISA0 = 1;
+    _delay((unsigned long)((1000)*(8000000/4000.0)));
     ADC_SelectChannel(1);
 
     while (1)
     {
+        if (flag == 0){
         valLM35 = ADC_GetConversion(1);
         temperature = (float)valLM35*(5/1024)*100;
 
         if(temperature>limite){
         LATDbits.LATD0 = 1;
         }
+        flag =1;
+        }
+        if (flag == 1){
 
+            LATBbits.LATB1 = 0;
+            _delay((unsigned long)((2)*(8000000/4000000.0)));
+            LATBbits.LATB1 = 1;
+            _delay((unsigned long)((10)*(8000000/4000000.0)));
+            LATBbits.LATB1 = 0;
+
+
+        if (wait_sensor())
+        {
+
+          uint16_t distance;
+
+          if(get_distance(&distance))
+          {
+             LATDbits.LATD0 = 1;
+          }
+
+          else
+          {
+            distance = distance / 58;
+          }
+
+        }
+
+
+      _delay((unsigned long)((200)*(8000000/4000.0)));
+
+      }
     }
 }

@@ -1,6 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"92 mcc_generated_files/pin_manager.h
-[; ;mcc_generated_files/pin_manager.h: 92: void PIN_MANAGER_Initialize (void);
+"78 mcc_generated_files/pin_manager.h
+[; ;mcc_generated_files/pin_manager.h: 78: void PIN_MANAGER_Initialize (void);
 [v _PIN_MANAGER_Initialize `(v ~T0 @X0 0 ef ]
 "84 mcc_generated_files/mcc.h
 [; ;mcc_generated_files/mcc.h: 84: void OSCILLATOR_Initialize(void);
@@ -8,8 +8,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "59 mcc_generated_files/ccp2.h
 [; ;mcc_generated_files/ccp2.h: 59: void CCP2_Initialize(void);
 [v _CCP2_Initialize `(v ~T0 @X0 0 ef ]
-"137 mcc_generated_files/adc.h
-[; ;mcc_generated_files/adc.h: 137: void ADC_Initialize(void);
+"136 mcc_generated_files/adc.h
+[; ;mcc_generated_files/adc.h: 136: void ADC_Initialize(void);
 [v _ADC_Initialize `(v ~T0 @X0 0 ef ]
 "12356 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f45k50.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic18f45k50.h: 12356: extern volatile unsigned char OSCCON __attribute__((address(0xFD3)));
@@ -680,8 +680,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _OSCILLATOR_Initialize ]
 [f ]
 "62
-[; ;mcc_generated_files/mcc.c: 62:     OSCCON = 0x40;
-[e = _OSCCON -> -> 64 `i `uc ]
+[; ;mcc_generated_files/mcc.c: 62:     OSCCON = 0x60;
+[e = _OSCCON -> -> 96 `i `uc ]
 "64
 [; ;mcc_generated_files/mcc.c: 64:     OSCCON2 = 0x00;
 [e = _OSCCON2 -> -> 0 `i `uc ]
@@ -689,8 +689,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;mcc_generated_files/mcc.c: 66:     OSCTUNE = 0x00;
 [e = _OSCTUNE -> -> 0 `i `uc ]
 "68
-[; ;mcc_generated_files/mcc.c: 68:     ACTCON = 0x00;
-[e = _ACTCON -> -> 0 `i `uc ]
+[; ;mcc_generated_files/mcc.c: 68:     ACTCON = 0x80;
+[e = _ACTCON -> -> 128 `i `uc ]
 "69
 [; ;mcc_generated_files/mcc.c: 69: }
 [e :UE 638 ]

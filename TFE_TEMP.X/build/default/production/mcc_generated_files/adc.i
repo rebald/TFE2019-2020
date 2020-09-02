@@ -8104,25 +8104,24 @@ typedef struct
 # 95 "mcc_generated_files/adc.h"
 typedef enum
 {
-    LM35 = 0x0,
     channel_Temp = 0x1C,
     channel_CTMU = 0x1D,
     channel_DAC = 0x1E,
     channel_FVRBuf2 = 0x1F
 } adc_channel_t;
-# 137 "mcc_generated_files/adc.h"
+# 136 "mcc_generated_files/adc.h"
 void ADC_Initialize(void);
-# 167 "mcc_generated_files/adc.h"
+# 166 "mcc_generated_files/adc.h"
 void ADC_SelectChannel(adc_channel_t channel);
-# 194 "mcc_generated_files/adc.h"
+# 193 "mcc_generated_files/adc.h"
 void ADC_StartConversion(void);
-# 226 "mcc_generated_files/adc.h"
+# 225 "mcc_generated_files/adc.h"
 _Bool ADC_IsConversionDone(void);
-# 259 "mcc_generated_files/adc.h"
+# 258 "mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversionResult(void);
-# 289 "mcc_generated_files/adc.h"
+# 288 "mcc_generated_files/adc.h"
 adc_result_t ADC_GetConversion(adc_channel_t channel);
-# 317 "mcc_generated_files/adc.h"
+# 316 "mcc_generated_files/adc.h"
 void ADC_TemperatureAcquisitionDelay(void);
 # 52 "mcc_generated_files/adc.c" 2
 
@@ -8208,5 +8207,5 @@ adc_result_t ADC_GetConversion(adc_channel_t channel)
 
 void ADC_TemperatureAcquisitionDelay(void)
 {
-    _delay((unsigned long)((200)*(2000000/4000000.0)));
+    _delay((unsigned long)((200)*(8000000/4000000.0)));
 }
